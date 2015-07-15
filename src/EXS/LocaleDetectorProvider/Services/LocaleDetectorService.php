@@ -22,16 +22,28 @@ class LocaleDetectorService
         $this->languageService = $languageService;
     }
 
+    /**
+     * Will search the locale from the Server in cache or db or will insert it in db.
+     * @return array
+     */
     public function getLocale(){
-        $locale = $this->localeService->getLocale($this->getUserBaseLanguage()['lng_ext']);
+        $locale = $this->localeService->getLocale($this->getUserBaseLanguage()[0]['lng_ext']);
         return $locale;
     }
 
+    /**
+     * Will search the language from the Server in cache or db or will insert it in db.
+     * @return array
+     */
     public function getLanguage(){
-        $language = $this->languageService->getLanguage($this->getUserBaseLanguage()['lng_base']);
+        $language = $this->languageService->getLanguage($this->getUserBaseLanguage()[0]['lng_base']);
         return $language;
     }
 
+    /**
+     * Return an array describing the first accepted language from $_SERVER.
+     * @return array
+     */
     function getUserBaseLanguage() {
         global $_SERVER;
         $accept_languages           = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
@@ -47,7 +59,7 @@ class LocaleDetectorService
                     '_str'      => $accept_language,
             );
         }
-        return $result[0];
+        return $result;
     }
 
 }

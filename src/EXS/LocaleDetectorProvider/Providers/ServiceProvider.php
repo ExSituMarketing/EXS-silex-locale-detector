@@ -17,9 +17,8 @@ use Pimple\Container;
  * @author Charles Weiss <charlesw@ex-situ.com>
  * @copyright   Copyright 2015 ExSitu Marketing.
  */
-class LocaleDetectorProvider implements ServiceProviderInterface
+class ServiceProvider implements ServiceProviderInterface
 {
-
     public function register(Container $container)
     {
         $container['exs.repo.locale'] = ( function ($container) {
