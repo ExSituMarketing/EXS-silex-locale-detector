@@ -1,9 +1,8 @@
 <?php
 
-namespace EXS\LocaleDetectorProvider\Services;
+namespace EXS\LocaleProvider\Services;
 
-use EXS\LocaleDetectorProvider\Repositories\LanguageRepository;
-
+use EXS\LocaleProvider\Repositories\LanguageRepository;
 
 /**
  * Gets the language from memcache

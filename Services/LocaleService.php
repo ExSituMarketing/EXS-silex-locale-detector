@@ -1,9 +1,8 @@
 <?php
 
-namespace EXS\LocaleDetectorProvider\Services;
+namespace EXS\LocaleProvider\Services;
 
-use EXS\LocaleDetectorProvider\Repositories\LocaleRepository;
-
+use EXS\LocaleProvider\Repositories\LocaleRepository;
 
 /**
  * Gets the country from memcache

@@ -1,6 +1,6 @@
 <?php
 
-namespace EXS\LocaleDetectorProvider\Repositories;
+namespace EXS\LocaleProvider\Repositories;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Statement;

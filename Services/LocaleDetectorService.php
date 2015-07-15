@@ -1,9 +1,9 @@
 <?php
 
-namespace EXS\LocaleDetectorProvider\Services;
+namespace EXS\LocaleProvider\services;
 
-use EXS\LocaleDetectorProvider\Services\LocaleService;
-use EXS\LocaleDetectorProvider\Services\LanguageService;
+use EXS\LocaleProvider\Services\LocaleService;
+use EXS\LocaleProvider\Services\LanguageService;
 
 /**
  * Identify the language and the country from $_SERVER["HTTP_ACCEPT_LANGUAGE"] and save it in db

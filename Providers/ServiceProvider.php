@@ -1,12 +1,12 @@
 <?php
 
-namespace EXS\src\LocaleDetectorProvider\Providers;
+namespace EXS\LocaleProvider\Providers;
 
-use EXS\LocaleDetectorProvider\Services\LanguageService;
-use EXS\LocaleDetectorProvider\Services\LocaleDetectorService;
-use EXS\LocaleDetectorProvider\Services\LocaleService;
-use EXS\LocaleDetectorProvider\Repositories\LanguageRepository;
-use EXS\LocaleDetectorProvider\Repositories\LocaleRepository;
+use EXS\LocaleProvider\Repositories\LocaleRepository;
+use EXS\LocaleProvider\Services\LocaleService;
+use EXS\LocaleProvider\Repositories\LanguageRepository;
+use EXS\LocaleProvider\Services\LanguageService;
+use EXS\LocaleProvider\services\LocaleDetectorService;
 use Pimple\ServiceProviderInterface;
 use Pimple\Container;
 
@@ -27,7 +27,6 @@ class ServiceProvider implements ServiceProviderInterface
         $container['exs.serv.locale'] = ( function ($container) {
             return new LocaleService($container['exs.repo.locale'],$container['memcache']);
         });
-
         $container['exs.repo.language'] = (function($container){
             return new LanguageRepository($container['db']);
         });

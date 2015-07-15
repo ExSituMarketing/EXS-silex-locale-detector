@@ -1,4 +1,4 @@
-    {
+{
     "name": "exs/silex-locale-detector",
     "description": "Locale detector bundle for Silex 2",
     "keywords": [
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-0": {
-            "EXS\\LocaleDetectorProvider": "src"
+            "EXS\\LocaleDetectorProvider": ""
         }
     },
     "minimum-stability": "dev",
