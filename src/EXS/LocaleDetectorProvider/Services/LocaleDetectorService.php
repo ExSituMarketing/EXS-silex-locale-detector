@@ -1,0 +1,53 @@
+<?php
+
+namespace EXS\LocaleDetectorProvider\Services;
+
+use EXS\LocaleDetectorProvider\Services\LocaleService;
+use EXS\LocaleDetectorProvider\Services\LanguageService;
+
+/**
+ * Identify the language and the country from $_SERVER["HTTP_ACCEPT_LANGUAGE"] and save it in db
+ *
+ * Created 1-May-2015
+ * @author Damien Demessence <damiend@ex-situ.com>
+ * @copyright   Copyright 2015 ExSitu Marketing.
+ */
+class LocaleDetectorService
+{
+    protected $localeService;
+    protected $languageService;
+
+    public function __construct(LocaleService $localeService, LanguageService $languageService){
+        $this->localeService = $localeService;
+        $this->languageService = $languageService;
+    }
+
+    public function getLocale(){
+        $locale = $this->localeService->getLocale($this->getUserBaseLanguage()['lng_ext']);
+        return $locale;
+    }
+
+    public function getLanguage(){
+        $language = $this->languageService->getLanguage($this->getUserBaseLanguage()['lng_base']);
+        return $language;
+    }
+
+    function getUserBaseLanguage() {
+        global $_SERVER;
+        $accept_languages           = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+        $accept_languages_arr       = explode(",",$accept_languages);
+        foreach($accept_languages_arr as $accept_language) {
+            preg_match ("/^(([a-zA-Z]+)(-([a-zA-Z]+)){0,1})(;q=([0-9.]+)){0,1}/" , $accept_language, $matches );
+            if (!isset($matches[6])) $matches[6]=1;
+                $result[] = array(
+                    'lng_base'  => $matches[2],
+                    'lng_ext'   => $matches[4],
+                    'lng'       => $matches[1],
+                    'priority'  => $matches[6],
+                    '_str'      => $accept_language,
+            );
+        }
+        return $result[0];
+    }
+
+}

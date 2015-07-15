@@ -1,0 +1,30 @@
+    {
+    "name": "exs/silex-locale-detector",
+    "description": "Locale detector bundle for Silex 2",
+    "keywords": [
+        "silex",
+        "locale",
+        "detector",
+        "provider",
+        "language"
+    ],
+    "homepage": "https://github.com/ExSituMarketing/EXS-silex-locale-detector",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Damien Demessence",
+            "email": "damiend@ex-situ.com"
+        }
+    ],
+    "require": {
+        "silex/silex": "~2.0@dev",
+        "doctrine/dbal": "~2.2"
+    },
+    "autoload": {
+        "psr-0": {
+            "EXS\\LocaleDetectorProvider": "src"
+        }
+    },
+    "minimum-stability": "dev",
+    "target-dir": "EXS/LocaleDetector"
+}
