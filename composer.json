@@ -21,10 +21,9 @@
         "doctrine/dbal": "~2.2"
     },
     "autoload": {
-        "psr-0": {
-            "EXS\\LocaleDetectorProvider": ""
+        "psr-4": {
+            "EXS\\LocaleProvider\\": ""
         }
     },
-    "minimum-stability": "dev",
-    "target-dir": "EXS/LocaleDetector"
+    "minimum-stability": "dev"
 }
