@@ -2,6 +2,8 @@
 
 namespace EXS\LocaleProvider\Providers;
 
+use EXS\LocaleProvider\Repositories\CountryRepository;
+use EXS\LocaleProvider\Services\CountryService;
 use EXS\LocaleProvider\Repositories\LocaleRepository;
 use EXS\LocaleProvider\Services\LocaleService;
 use EXS\LocaleProvider\Repositories\LanguageRepository;
@@ -33,8 +35,14 @@ class ServiceProvider implements ServiceProviderInterface
         $container['exs.serv.language'] = (function($container){
             return new LanguageService($container['exs.repo.language'],$container['memcache']);
         });
+        $container['exs.repo.country'] = ( function ($container) {
+            return new CountryRepository($container['db']);
+        });
+        $container['exs.serv.country'] = ( function ($container) {
+            return new CountryService($container['exs.repo.country'],$container['memcache']);
+        });
         $container['exs.serv.locale.detector'] = (function($container){
-            return new LocaleDetectorService($container['exs.serv.locale'],$container['exs.serv.language']);
+            return new LocaleDetectorService($container['exs.serv.locale'],$container['exs.serv.language'],$container['exs.serv.country']);
         });
     }
 }

@@ -3,7 +3,7 @@
 namespace EXS\LocaleProvider\Services;
 
 use KuiKui\MemcacheServiceProvider\SimpleWrapper;
-use EXS\LocaleProvider\Repositories\LocaleRepository;
+use EXS\LocaleProvider\Repositories\CountryRepository;
 
 /**
  * Gets the country from memcache
@@ -13,11 +13,11 @@ use EXS\LocaleProvider\Repositories\LocaleRepository;
  * @author Damien Demessence <damiend@ex-situ.com>
  * @copyright   Copyright 2015 ExSitu Marketing.
  */
-class LocaleService
+class CountryService
 {
     /**
      * The repository with the queries
-     * @var LocaleRepository
+     * @var CountryRepository
      */
     protected $repository;
     /**
@@ -27,45 +27,45 @@ class LocaleService
     private $memCache;
 
     /**
-     * The key to store locales in memcache
+     * The key to store countries in memcache
      * @var string
      */
-    private $cacheKey = 'locales_';
+    private $cacheKey = 'countries_';
 
     /**
      *
-     * @param LocaleRepository $localeRepository
+     * @param CountryRepository $countryRepository
      * @param MemcacheProviderService $memCache
      */
-    public function __construct(LocaleRepository $localeRepository,SimpleWrapper $memCache)
+    public function __construct(CountryRepository $countryRepository,SimpleWrapper $memCache)
     {
-        $this->repository = $localeRepository;
+        $this->repository = $countryRepository;
         $this->memCache = $memCache;
     }
 
     /**
-     * Gets the locale from memcache or inserts it
+     * Gets the country from memcache or inserts it
      * @param array $tag
      * @return array
      */
-    public function getLocale($tag,$fallback=false){
+    public function getCountry($tag,$fallback=false){
         if($tag==''){
             return false;
         }
-        $locale = $this->memCache->get($this->getCacheKey($tag));
-        if(!$locale){
-            $query = $this->repository->getLocaleByTag($tag);
+        $country = $this->memCache->get($this->getCacheKey($tag));
+        if(!$country){
+            $query = $this->repository->getCountryByAlpha($tag);
             $query->execute();
-            $locale = $query->fetch();
-            if($locale){
-                $this->memCache->set($this->getCacheKey($tag),$locale);
+            $country = $query->fetch();
+            if($country){
+                $this->memCache->set($this->getCacheKey($tag),$country);
             } elseif(!$fallback) {
-                $insert = $this->repository->insertLocaleFromTag($tag);
+                $insert = $this->repository->insertCountryFromAlpha($tag);
                 $insert->execute();
-                $locale = $this->getLocale($tag,true);
+                $country = $this->getCountry($tag,true);
             }
         }
-        return $locale;
+        return $country;
     }
 
     /**

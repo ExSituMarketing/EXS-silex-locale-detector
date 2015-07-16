@@ -16,10 +16,12 @@ class LocaleDetectorService
 {
     protected $localeService;
     protected $languageService;
+    protected $countryService;
 
-    public function __construct(LocaleService $localeService, LanguageService $languageService){
+    public function __construct(LocaleService $localeService, LanguageService $languageService,CountryService $countryService){
         $this->localeService = $localeService;
         $this->languageService = $languageService;
+        $this->countryService = $countryService;
     }
 
     /**
@@ -27,7 +29,7 @@ class LocaleDetectorService
      * @return array
      */
     public function getLocale(){
-        $locale = $this->localeService->getLocale($this->getUserBaseLanguage()[0]['lng_ext']);
+        $locale = $this->localeService->getLocale($this->getUserBaseLanguage()[0]['_str']);
         return $locale;
     }
 
@@ -38,6 +40,15 @@ class LocaleDetectorService
     public function getLanguage(){
         $language = $this->languageService->getLanguage($this->getUserBaseLanguage()[0]['lng_base']);
         return $language;
+    }
+
+    /**
+     * Will search the country from the Server in cache or db or will insert it in db.
+     * @return array
+     */
+    public function getCountry(){
+        $country = $this->countryService->getCountry($this->getUserBaseLanguage()[0]['lng_ext']);
+        return $country;
     }
 
     /**

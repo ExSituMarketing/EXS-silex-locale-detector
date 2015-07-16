@@ -18,7 +18,8 @@
     ],
     "require": {
         "silex/silex": "~2.0@dev",
-        "doctrine/dbal": "~2.2"
+        "doctrine/dbal": "~2.2",
+        "kuikui/memcache-service-provider": "~2.0"
     },
     "autoload": {
         "psr-4": {

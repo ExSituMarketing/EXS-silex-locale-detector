@@ -20,24 +20,24 @@ class LocaleRepository
 
     /**
      * Returns query to select locale by tag
-     * @param string tag
+     * @param string $tag
      * @return Statement
      */
     public function getLocaleByTag($tag=''){
-        $sth = $this->db->prepare('SELECT * FROM locales WHERE tag = :tag');
-        $sth->bindValue('tag',$tag);
+        $sth = $this->db->prepare('SELECT * FROM locales WHERE LOWER(tag) = :tag');
+        $sth->bindValue('tag',strtolower($tag));
 
         return $sth;
     }
 
     /**
      * Returns query to insert locales
-     * @param string tag
+     * @param string $tag
      * @return Statement
      */
     public function insertLocaleFromTag($tag=''){
-        $sth = $this->db->prepare('INSERT INTO locale (tag,created,modified) VALUES (:tag,now(),now())');
-        $sth->bindValue('tag',strtoupper($tag));
+        $sth = $this->db->prepare('INSERT INTO locales (tag,created,modified) VALUES (:tag,now(),now())');
+        $sth->bindValue('tag',strtolower($tag));
 
         return $sth;
     }

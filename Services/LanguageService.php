@@ -2,6 +2,7 @@
 
 namespace EXS\LocaleProvider\Services;
 
+use KuiKui\MemcacheServiceProvider\SimpleWrapper;
 use EXS\LocaleProvider\Repositories\LanguageRepository;
 
 /**
@@ -57,7 +58,6 @@ class LanguageService
             $query->execute();
             $language = $query->fetch();
             if($language){
-                $language = $language['id'];
                 $this->memCache->set($this->getCacheKey($tag),$language);
             } elseif(!$fallback) {
                 $insert = $this->repository->insertLanguageFromTag($tag);
