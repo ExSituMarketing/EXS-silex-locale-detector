@@ -1,8 +1,11 @@
 # EXS-silex-locale-detector
 
 Locale detection with country and language breakdown
+
 It will get the accepted language and country from $_SERVER['HTTP_ACCEPT_LANGUAGE'] and will check it against Db.
+
 If it's not found in Db, it will insert it and return the new entry.
+
 Results are cached with memcache.
 
 ## Installation
@@ -89,8 +92,11 @@ CREATE TABLE `countries` (
 ## Dependencies
 
 Silex 2.0
+
 Doctrine\Dbal 2.2
+
 kuikui/memcache-service-provider ~2.0
+
 You need a memcache server up and running.
 
 ## License
