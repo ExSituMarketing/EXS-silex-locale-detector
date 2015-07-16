@@ -82,7 +82,7 @@ CREATE TABLE `countries` (
 ## Example
 
 ```php
-    $app->register(new EXS/LocaleDetectorProvider\ServiceProvider());
+    $app->register(new \EXS\LocaleProvider\Providers\ServiceProvider());
     // Simple use
     $language = $app['exs.serv.locale.detector']->getLanguage();
     $local = $app['exs.serv.locale.detector']->getLocale();
