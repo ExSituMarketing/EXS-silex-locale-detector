@@ -1,6 +1,6 @@
 <?php
 
-namespace EXS\LocaleProvider\services;
+namespace EXS\LocaleProvider\Services;
 
 use EXS\LocaleProvider\Services\LocaleService;
 use EXS\LocaleProvider\Services\LanguageService;
