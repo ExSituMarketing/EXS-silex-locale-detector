@@ -8,7 +8,7 @@ use EXS\LocaleProvider\Repositories\LocaleRepository;
 use EXS\LocaleProvider\Services\LocaleService;
 use EXS\LocaleProvider\Repositories\LanguageRepository;
 use EXS\LocaleProvider\Services\LanguageService;
-use EXS\LocaleProvider\services\LocaleDetectorService;
+use EXS\LocaleProvider\Services\LocaleDetectorService;
 use Pimple\ServiceProviderInterface;
 use Pimple\Container;
 
